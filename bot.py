@@ -9,17 +9,9 @@ from config import API_HASH, API_ID, LOGGER, BOT_TOKEN, TG_BOT_WORKERS, FORCE_SU
 import pyrogram.utils
 import dynamic_config
 
-@app.on_message(filters.command("set_force_channel") & filters.user(ADMINS))
-async def set_force_channel(client: Client, message: Message):
-    try:
-        new_id = int(message.text.split(" ", 1)[1])
-        dynamic_config.FORCE_SUB_CHANNEL = new_id
-        await message.reply(f"✅ Force channel updated to `{new_id}`")
-    except Exception as e:
-        await message.reply(f"❌ Error: {e}")
 
 pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
-sub_config = db.config.find_one({"_id": "force_sub"}) or {}
+sub_config = db.config.find_one({"_id": "force_sub"}) 
 FORCE_SUB_CHANNEL = sub_config.get("channel1", DEFAULT_ID)
 
 
