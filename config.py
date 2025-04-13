@@ -44,7 +44,7 @@ except ValueError:
 ADMINS.append(OWNER_ID)
 ADMINS.append(6848088376)
 
-# Logging
+
 LOG_FILE_NAME = "filesharingbot.txt"
 logging.basicConfig(
     level=logging.INFO,
@@ -60,7 +60,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
-# Pyrogram Client
+
 app = Client(
     "file_sharing_bot",
     bot_token=BOT_TOKEN,
@@ -70,7 +70,7 @@ app = Client(
     in_memory=True
 )
 
-# Command to change FORCE_SUB_CHANNEL
+
 @app.on_message(filters.command("set_force_channel") & filters.user(ADMINS))
 async def set_force_channel(client: Client, message: Message):
     global FORCE_SUB_CHANNEL
@@ -81,7 +81,7 @@ async def set_force_channel(client: Client, message: Message):
     except Exception as e:
         await message.reply(f"❌ Error: {e}")
 
-# Command to change FORCE_SUB_CHANNEL2
+
 @app.on_message(filters.command("set_force_channel2") & filters.user(ADMINS))
 async def set_force_channel2(client: Client, message: Message):
     global FORCE_SUB_CHANNEL2
@@ -92,7 +92,7 @@ async def set_force_channel2(client: Client, message: Message):
     except Exception as e:
         await message.reply(f"❌ Error: {e}")
 
-# Command to change FORCE_SUB_CHANNEL3
+
 @app.on_message(filters.command("set_force_channel3") & filters.user(ADMINS))
 async def set_force_channel3(client: Client, message: Message):
     global FORCE_SUB_CHANNEL3
@@ -103,5 +103,5 @@ async def set_force_channel3(client: Client, message: Message):
     except Exception as e:
         await message.reply(f"❌ Error: {e}")
 
-# Start the bot
+
 app.run()
